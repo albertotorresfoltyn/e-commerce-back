@@ -33,7 +33,7 @@ app.use(expressValidator());
 
 
 //routes  userRoutes as middleware -> http://localhost:8000/api
-console.log(userRoutes, categoryRoutes, productRoutes)
+//console.log(userRoutes, categoryRoutes, productRoutes)
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
