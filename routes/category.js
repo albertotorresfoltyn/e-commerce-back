@@ -12,7 +12,6 @@ router.post(
     isAdmin, 
     isAuth, 
     create
-    
 );
 
 router.param("userId", userById);
