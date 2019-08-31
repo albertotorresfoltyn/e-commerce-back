@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "bb335b61-ea2a-4207-9426-82051b91801d",
+		"name": "ECOMMERCE2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SIGNUP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Pablo\",\n\t\"email\": \"john@gmail.com\",\n\t\"password\": \"jjjjj9\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"juan@gmail.com\",\n\t\"password\": \"jjjjj2\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOgout",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"pablo@gmail.com\",\n\t\"password\": \"jjjjj9\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/signout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"signout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SECRET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"name": "Content-Type",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDYxYWJiNWI0YmM3ZGJiMWU5NmQ4ZTgiLCJpYXQiOjE1NjY2ODI0MjF9.4h7XTkkOMg8xqRlQ2rdYBW9i6u2I_CRxeMSxOtEMyMQ",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"Martin2@gmail.com\",\n\t\"password\": \"jjjjj9\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/category/create/5d66fc24012a5ee48c602dc1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"category",
+						"create",
+						"5d66fc24012a5ee48c602dc1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CATEGORY CREATE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"name": "Content-Type",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDYxYWJiNWI0YmM3ZGJiMWU5NmQ4ZTgiLCJpYXQiOjE1NjY2ODI0MjF9.4h7XTkkOMg8xqRlQ2rdYBW9i6u2I_CRxeMSxOtEMyMQ",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"Martin2@gmail.com\",\n\t\"password\": \"jjjjj9\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/category/create/5d66fc24012a5ee48c602dc1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"category",
+						"create",
+						"5d66fc24012a5ee48c602dc1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PRODUCT CREATE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"name": "Content-Type",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDY2ZmRiODAxMmE1ZWU0OGM2MDJkYzIiLCJpYXQiOjE1NjcwMzA5MTl9.YU_8z3gHqLWlDkKPUR5a_nSxrqvbC9eNZmQkGl-wh4g",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Node\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/category/create/5d66fdb8012a5ee48c602dc2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"category",
+						"create",
+						"5d66fdb8012a5ee48c602dc2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
