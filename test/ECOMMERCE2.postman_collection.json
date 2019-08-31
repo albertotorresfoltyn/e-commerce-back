@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bb335b61-ea2a-4207-9426-82051b91801d",
+		"_postman_id": "7bfa8427-1c40-41b4-ac59-bf87f85f2ba0",
 		"name": "ECOMMERCE2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -55,7 +55,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"juan@gmail.com\",\n\t\"password\": \"jjjjj2\"\n}"
+					"raw": "{\n\t\"email\": \"john@gmail.com\",\n\t\"password\": \"jjjjj9\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8000/api/signin",
@@ -149,16 +149,13 @@
 		},
 		{
 			"name": "CATEGORY CREATE",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "Authorization",
 						"name": "Content-Type",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDYxYWJiNWI0YmM3ZGJiMWU5NmQ4ZTgiLCJpYXQiOjE1NjY2ODI0MjF9.4h7XTkkOMg8xqRlQ2rdYBW9i6u2I_CRxeMSxOtEMyMQ",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDZhN2JhMzI5YTJhNTAyMWQ1MTcyZTciLCJpYXQiOjE1NjcyNTk3MzN9.rWO5X0W1-eWJZ3x1rGA2LySSpzf6gzGACUIKDWMw2jg",
 						"type": "text"
 					},
 					{
@@ -169,10 +166,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"Martin2@gmail.com\",\n\t\"password\": \"jjjjj9\"\n}"
+					"raw": "{\n\t\"name\": \"pablo se la come\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/category/create/5d66fc24012a5ee48c602dc1",
+					"raw": "http://localhost:8000/api/category/create/5d6a7ba329a2a5021d5172e7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -182,7 +179,7 @@
 						"api",
 						"category",
 						"create",
-						"5d66fc24012a5ee48c602dc1"
+						"5d6a7ba329a2a5021d5172e7"
 					]
 				}
 			},
@@ -196,21 +193,43 @@
 					{
 						"key": "Authorization",
 						"name": "Content-Type",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDY2ZmRiODAxMmE1ZWU0OGM2MDJkYzIiLCJpYXQiOjE1NjcwMzA5MTl9.YU_8z3gHqLWlDkKPUR5a_nSxrqvbC9eNZmQkGl-wh4g",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDZhN2JhMzI5YTJhNTAyMWQ1MTcyZTciLCJpYXQiOjE1NjcyNjEyMTh9.v6ygbtsMr0LPniAZTmpGMeutbdOE423O5yHjFufIJ5Q",
 						"type": "text"
 					},
 					{
 						"key": "Content-Type",
-						"value": "application/json",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
 						"type": "text"
 					}
 				],
 				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Node\"\n}"
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "coso",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "un coso",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "5d6a83b070c2560600a9f4f1",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/category/create/5d66fdb8012a5ee48c602dc2",
+					"raw": "http://localhost:8000/api/product/create/5d6a7ba329a2a5021d5172e7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -218,9 +237,9 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"category",
+						"product",
 						"create",
-						"5d66fdb8012a5ee48c602dc2"
+						"5d6a7ba329a2a5021d5172e7"
 					]
 				}
 			},
