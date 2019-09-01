@@ -29,10 +29,17 @@ const productSchema = new mongoose.Schema(
         quantity: {
             type: Number
         },
+
+        sold: {
+            type: Number,
+            default: 0
+        },
+
         photo:{
             data: Buffer,
             contentType: String,
         },
+
         shipping: { //leave open to be flexible with the users decision
             required: false,
             type: Boolean,
