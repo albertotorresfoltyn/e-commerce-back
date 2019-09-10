@@ -4,6 +4,7 @@ import { getProducts } from './apiCore'
 import Card from './Card'
 import { isAuthenticated } from '../auth'
 import { Link } from 'react-router-dom'
+import { checkout } from './apiCore'
 
 const Checkout = ({ products }) => {
     const getTotal = () => {
@@ -16,7 +17,7 @@ const Checkout = ({ products }) => {
 
     const showCheckout = () => {
         return isAuthenticated() ? (
-            <button className="btn btn-success">Checkout</button>
+            <button  className="btn btn-success">Checkout</button>
         ) : (
             <Link to="/signin">
                 <button className="btn btn-primary">Sign In to checkout</button>

@@ -73,3 +73,13 @@ export const read = (productId ) => {
        })
        .catch(err => console.log(err));
    };
+
+   export const checkout = () => {
+    return fetch (`${API}/test/`, {
+        method: "POST"
+    })
+       .then(response =>{
+           return response.json();
+       })
+       .catch(err => console.log(err));
+   };
