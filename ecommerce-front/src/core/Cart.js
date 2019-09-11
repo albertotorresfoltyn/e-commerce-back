@@ -7,10 +7,11 @@ import Checkout from './Checkout'
 
 const Cart = () => {
     const [items, setItems] = useState([])
-    
-    useEffect(() => {
+    //console.log(items, setItems);
+    useEffect(() => {debugger;
+        //console.log('using setitems', getCart());
         setItems(getCart())
-    }, [items])
+    }, [])
 
     const showItems = items => {
         return (
