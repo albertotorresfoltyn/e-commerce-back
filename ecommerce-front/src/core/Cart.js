@@ -8,7 +8,7 @@ import Checkout from './Checkout'
 const Cart = () => {
     const [items, setItems] = useState([])
     //console.log(items, setItems);
-    useEffect(() => {debugger;
+    useEffect(() => {
         //console.log('using setitems', getCart());
         setItems(getCart())
     }, [])

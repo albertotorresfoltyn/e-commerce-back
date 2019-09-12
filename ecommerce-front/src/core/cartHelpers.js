@@ -81,5 +81,11 @@ export const removeItem = (productId) => {
 
         localStorage.setItem("cart", JSON.stringify(cart));
     }
-    return cart
+    return cart;
+};
+
+export const emptyCart = next => {
+    if (typeof window !== 'undefined') {
+        localStorage.removeItem('cart')
+    }
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
 import { getProducts, getBraintreeClientToken, processPayment } from './apiCore'
+import { emptyCart } from './cartHelpers'
 import Card from './Card'
 import { isAuthenticated } from '../auth'
 import { Link } from 'react-router-dom'
@@ -11,7 +12,8 @@ import DropIn from 'braintree-web-drop-in-react'
 const Checkout = ({ products }) => {
 
     const [data, setData] = useState({
-        sucess: false,
+        loading: false,
+        success: false,
         clientToken: null,
         error: '',
         instance: {},
@@ -21,12 +23,12 @@ const Checkout = ({ products }) => {
     const userId = isAuthenticated() && isAuthenticated().user._id 
     const token = isAuthenticated() && isAuthenticated().token 
 
-    const getToken=(userId, token) => {
+    const getToken = (userId, token) => {
         getBraintreeClientToken(userId, token).then(data => {
             if (data.error) {
                 setData({...data, error: data.error})
             } else {
-                setData({...data, clientToken: data.clientToken})
+                setData({clientToken: data.clientToken})
             }
         })
     }
@@ -58,7 +60,7 @@ const Checkout = ({ products }) => {
 
     const buy = () => {
             //send the nonce to your server,  nonce = data.instance.requestPaymentMethod()
-
+            setData({ loading: true })
             let nonce;
             let getNonce = data.instance.requestPaymentMethod()
             .then(data => {
@@ -73,9 +75,20 @@ const Checkout = ({ products }) => {
                 }
 
                 processPayment(userId, token, paymentData)
-                .then(response => console.log(response))
-                .catch(error => console.log(error))
-
+                    .then(response => {
+                        //console.log(response)
+                        setData({...data, success: response.success })
+                        emptyCart(() => {
+                            console.log('payment sucess and empty cart')
+                            setData({ loading: false })
+                        })
+                        //empty cart
+                        //create order
+                    })
+                    .catch(error => {
+                        console.log(error)
+                        setData({ loading: false })
+                    })  
             })
             .catch(error => {
                // console.log('droping error: ', error)
@@ -89,27 +102,41 @@ const Checkout = ({ products }) => {
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
                     <DropIn options= {{
-                        authorization: data.clientToken
+                        authorization: data.clientToken, 
+                        paypal: {
+                            flow: 'vault'
+                        }
                     }} 
                         onInstance={instance => (data.instance = instance )} />
 
-                    <button onClick={buy} className="btn btn-success btn-block">Pay</button>
+                    <button onClick={buy} className="btn btn-success btn-block ">Pay</button>
                 </div>
             ): null}
         </div>
     )
 
     const showError = error => (
-        <div className="alert- alert-danger" style={{ display: error ? "" : "none"}} >
+        <div className="alert- alert-danger" style={{ display: error ? "" : "none" }} >
             {error}
         </div>
     )
+
+    const showSuccess = success => (
+        <div className="alert alert-info" style={{ display: success ? "" : "none" }} >
+            Thanks!, your payment was successfull!
+        </div>
+    )
+    
+    const showLoading = (loading) => loading && <h2>Loading...</h2>;
+    
 
     return (
         <div>
 
             <h2>Total: ${getTotal()}</h2>
+                {showLoading(data.loading)}
                 {showError(data.error)}
+                {showSuccess(data.success)}
                 {showCheckout()}
 
         </div>
