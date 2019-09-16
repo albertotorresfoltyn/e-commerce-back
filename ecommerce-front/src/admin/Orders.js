@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
-import { authenticate as isAuth} from "../auth/index"
+//import { authenticate as isAuth} from "../auth/index"
+import { isAuthenticated } from '../auth'
 import { Link } from "react-router-dom"
 import { listOrders } from "./apiAdmin"
 
@@ -8,7 +9,7 @@ const Orders = () => {
     const [orders, setOrders ] = useState([])
 
 
-    const {user, token} = isAuth()
+    const {user, token} = isAuthenticated()
 
     const loadOrders = () => {
         listOrders(user._id, token).then(data => {
@@ -38,8 +39,14 @@ const Orders = () => {
         <Layout title="Orders" description={`Great Day ${user.name}, you can manage all the orders here`}>
             <div className="row">
                 <div className="col-md8 offset-md-2">
-                    { showOrdersLength(orders) }
-                    { JSON.stringify(orders) }
+                    { showOrdersLength() }
+
+                    { orders.map((o, oIndex) => {
+                        return (
+                            <div className="mt-5" key={oIndex} style={{ borderBottom: "5px solid indigo"}}
+                            />
+                        )
+                    })}
                 </div>
             </div>       
         </Layout>
