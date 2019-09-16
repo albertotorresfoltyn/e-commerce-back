@@ -302,3 +302,24 @@ exports.listCategories = (req, res) => {
             }) .select('-photo')
         }
     }
+
+    exports.decreaseQuantity = (req, res, next) => {
+        
+        let bulkOps = req.body.order.product.map((item) => {
+            return {
+                updateOne: {
+                    filter: {_id: item._id},
+                    update: {$sinc: {quantity: -item.count, sold: +item.count }}
+                }
+            }
+        })
+
+        Product.bulkWrite(bulkOps, {}, (error, products) => {
+            if (error) {
+                return res.status(400).json({
+                    error: 'Could not update product'
+                })
+            }
+            next()
+        })
+    } 

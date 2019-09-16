@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Layout from './Layout'
-import { getProducts, getBraintreeClientToken, processPayment } from './apiCore'
+import { getProducts, getBraintreeClientToken, processPayment, createOrder } from './apiCore'
 import { emptyCart } from './cartHelpers'
 import Card from './Card'
 import { isAuthenticated } from '../auth'
 import { Link } from 'react-router-dom'
 import DropIn from 'braintree-web-drop-in-react'
+import { loadavg } from 'os'
 
 
 
@@ -15,9 +16,9 @@ const Checkout = ({ products }) => {
         loading: false,
         success: false,
         clientToken: null,
-        error: '',
+        error: "",
         instance: {},
-        address:''
+        address: ""
     });
 
     const userId = isAuthenticated() && isAuthenticated().user._id 
@@ -38,6 +39,10 @@ const Checkout = ({ products }) => {
     }, []) 
 
 
+    const handleAddress = event => {
+        setData({...data, address: event.target.value })
+    }
+
     const getTotal = () => {
         //Array.reduce() method executes a reducer function (that you provide) on each element of the array
         //resulting in a single output value -> 
@@ -57,6 +62,9 @@ const Checkout = ({ products }) => {
     }
     
     
+    let deliveryAddress = data.address
+
+
 
     const buy = () => {
             //send the nonce to your server,  nonce = data.instance.requestPaymentMethod()
@@ -74,16 +82,26 @@ const Checkout = ({ products }) => {
                     amount: getTotal(products)
                 }
 
-                processPayment(userId, token, paymentData)
+                processPayment(userId, token, paymentData) // NO APARECE EL PAYMENT SUCCESS Y NO REFRESCA DESP DE PAGAR , ALBERT MIRAR
                     .then(response => {
                         //console.log(response)
-                        setData({...data, success: response.success })
-                        emptyCart(() => {
-                            console.log('payment sucess and empty cart')
-                            setData({ loading: false })
-                        })
                         //empty cart
                         //create order
+
+                        const createOrderData = {
+                            products: products,
+                             transaction_id: response.transaction.id,
+                            amount: response.transaction.amount,
+                            address: deliveryAddress
+                        }
+                        createOrder(userId, token, createOrderData)
+                        .then(response => {
+                            emptyCart(() => {
+                                console.log('payment success and empty cart')
+                                setData({ loading: false, success: response.success })
+                            })
+
+                        })
                     })
                     .catch(error => {
                         console.log(error)
@@ -101,13 +119,24 @@ const Checkout = ({ products }) => {
         <div onBlur={() => setData({...data, error:""})}>
             {data.clientToken !== null && products.length > 0 ? (
                 <div>
-                    <DropIn options= {{
+                      <div className="form-group mb-3">
+                            <label className="text-muted">Delivery Address:</label>
+                            <textarea
+                                    onChange={handleAddress}
+                                    className="form-control"
+                                    value={data.address}
+                                    placeholder="Type your delivery address here..."
+                            />         
+                      </div>  
+
+                    <DropIn options={{
                         authorization: data.clientToken, 
                         paypal: {
                             flow: 'vault'
                         }
                     }} 
-                        onInstance={instance => (data.instance = instance )} />
+                        onInstance={instance => (data.instance = instance )} 
+                    />
 
                     <button onClick={buy} className="btn btn-success btn-block ">Pay</button>
                 </div>

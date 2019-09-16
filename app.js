@@ -14,6 +14,7 @@ const categoryRoutes = require("./routes/category")
 const productRoutes = require("./routes/product")
 const mpRoutes = require("./routes/mp")
 const braintreeRoutes = require("./routes/braintree")
+const orderRoutes = require("./routes/order")
 
 
 // app
@@ -44,6 +45,7 @@ app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", mpRoutes);
 app.use("/api", braintreeRoutes);
+app.use("/api", orderRoutes);
 
 const port = process.env.PORT || 8000
 
