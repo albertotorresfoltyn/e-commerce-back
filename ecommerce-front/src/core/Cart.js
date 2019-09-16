@@ -11,7 +11,7 @@ const Cart = () => {
     useEffect(() => {
         //console.log('using setitems', getCart());
         setItems(getCart())
-    }, [init])
+    }, [items])
 
     const showItems = items => {
         return (
