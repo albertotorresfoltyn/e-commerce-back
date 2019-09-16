@@ -104,10 +104,10 @@ export const listOrders = (userId, token) => {
         method: "GET",
         headers: {
             Accept: "application/json",
-            Authorization: `Bearer $ {token}`
+            Authorization: `Bearer ${token}`
         }
     })
-       .then(response =>{
+       .then(response => {
            return response.json();
        })
        .catch(err => console.log(err));

@@ -24,15 +24,21 @@ const Orders = () => {
         loadOrders()
     }, [])
 
-    const noOrders = orders => {
-        return orders.length < 1 ? <h4>No orders</h4> : null;
+    const showOrdersLength = () => {
+        if (orders.length > 0 ) {
+            return (
+                <h1 className="text-danger display-2">Total orders: {orders.length} </h1>
+            )
+        } else {
+            return <h1 className="text-danger"> No orders</h1>
+        }
     };
     
     return (
-        <Layout title="Add a new category" description={`Great Day ${user.name}, you can manage all the orders here`}>
+        <Layout title="Orders" description={`Great Day ${user.name}, you can manage all the orders here`}>
             <div className="row">
                 <div className="col-md8 offset-md-2">
-                    { noOrders(orders) }
+                    { showOrdersLength(orders) }
                     { JSON.stringify(orders) }
                 </div>
             </div>       
@@ -41,4 +47,4 @@ const Orders = () => {
 
 }
 
-export default Orders
+export default Orders;
