@@ -47,6 +47,39 @@ app.use("/api", mpRoutes);
 app.use("/api", braintreeRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", placeRoutes)
+// create our router
+var router = express.Router();
+// DEFINE OUR ROUTES -------------------------------
+router.get('/:entity', function(req, res, next) {
+    const entityName = req.params.entity;
+    console.log(entityName);
+  console.log(req.query);
+    entity = db.get(entityName);
+    entity.find({}, {}, function (err, docs) {
+      if (err) {
+        return console.error(err);
+      } else {
+        //respond to both HTML and JSON. JSON responses require 'Accept: application/json;' in the Request Header
+        res.json(docs);
+      }
+    })
+  });
+  
+  router.post('/:entity', function(req, res, next) {
+      const entityName = req.params.entity;
+      entity = db.get(entityName);
+      const obj = req.body
+      entity.insert(obj, function (err, blob) {
+        if (err) {
+            res.send("There was a problem adding the information to the database.");
+        } else {
+          //Blob has been created
+          res.json(blob);
+        }
+      });
+    });
+  // REGISTER OUR ROUTES -------------------------------
+  app.use('/api', router);
 
 const port = process.env.PORT || 8000
 
