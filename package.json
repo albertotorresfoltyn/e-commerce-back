@@ -26,6 +26,7 @@
     "morgan": "^1.9.1",
     "nodemon": "^1.19.2",
     "query-string": "^6.8.3",
+    "sendmail": "^1.6.1",
     "simple-repo": "^1.0.2",
     "uuid": "^3.3.2"
   }

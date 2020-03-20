@@ -40,7 +40,6 @@ exports.update = (req, res) => {
 
 exports.addOrderToUserHistory = (req, res, next) => {
     let history = []
-
     req.body.order.products.forEach((item) => {
         history.push({
             _id: item._id,
@@ -65,5 +64,4 @@ exports.addOrderToUserHistory = (req, res, next) => {
             }
             next();
     }) 
-
 }
