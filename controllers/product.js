@@ -50,7 +50,7 @@ exports.create = (req, res) => {
             });
         }
         
-
+        fields.tags = JSON.parse(fields.tags) ;
         let product = new Product(fields) //create a new product with the fields we got
 
         //1kb = 1000
@@ -68,6 +68,7 @@ exports.create = (req, res) => {
             product.photo.data = fs.readFileSync(files.photo.path) //as products Schema model
             product.photo.contentType = files.photo.type
         }
+        product.photos = [ product.photo,  product.photo,  product.photo];
 
         product.save((err,result) => {
             if(err) {

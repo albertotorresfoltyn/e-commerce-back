@@ -44,17 +44,17 @@ const productSchema = new mongoose.Schema(
             type: Number,
             default: 0
         },
-
        
-        photos: [{
-            data: Buffer,
-            contentType: String,
-        }],
         photo: {
             data: Buffer,
-            contentType: String,
+            contentType: String
         },
-
+        photos: [{
+            data: Buffer,
+            contentType: String
+        }],
+      
+      
         shipping: { //leave open to be flexible with the users decision
             required: false,
             type: Boolean,
